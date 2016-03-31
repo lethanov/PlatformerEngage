@@ -65,7 +65,9 @@ public class PopupManage : MonoBehaviour {
 			} else {
 				_lastSafePosition = transform.position;
 			}
-			_colliderComp.isTrigger = false;
+			if(isCollidable){
+				_colliderComp.isTrigger = false;
+			}
 		}
 	}
 
