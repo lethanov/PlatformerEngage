@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Sprites/Animated/gif 11/c6c052815934a0504b067e02bf5c76b3_0000_Calque-6.png.meta
 guid: d7587a1e379460349845fce56160a58b
 timeCreated: 1459802575
+=======
+guid: f8cc63d877f836d46bd9c44556844bd1
+timeCreated: 1459801873
+>>>>>>> origin/master:Assets/Sprites/Animated/gif 11/c6c052815934a0504b067e02bf5c76b3_0000_Calque-6.png.meta
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
