@@ -96,7 +96,6 @@ public class PopupManage : MonoBehaviour {
 						_timeRandom = 0;
 					}
 					transform.position = Vector3.Lerp(transform.position, destinationRandom, Time.deltaTime * MovementSpeed);
-					print("lol");
 				}
 			}
 		}
