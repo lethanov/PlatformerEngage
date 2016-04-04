@@ -49,7 +49,6 @@ public class Player : MonoBehaviour {
 				}
 			}
 		} else {
-			_nexAnim = "Jump";
 			if(yVel < -20){
 				yVel = -20;
 			} else {
