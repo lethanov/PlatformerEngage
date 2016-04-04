@@ -16,7 +16,6 @@ public class Player : MonoBehaviour {
 	private string _curAnim = "";
 
 	private float initScale;
-	private int currentCheckpoint = 0;
 
 	// Use this for initialization
 	void Start () {
