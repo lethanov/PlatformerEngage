@@ -22,7 +22,7 @@ public class Player : MonoBehaviour {
 		rb = GetComponent<Rigidbody2D>();
 		initScale = transform.FindChild("Gfx").localScale.x;
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		OnGround();
@@ -49,6 +49,7 @@ public class Player : MonoBehaviour {
 				}
 			}
 		} else {
+			_nexAnim = "Jump";
 			if(yVel < -20){
 				yVel = -20;
 			} else {
