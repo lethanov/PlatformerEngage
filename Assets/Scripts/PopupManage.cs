@@ -87,7 +87,6 @@ public class PopupManage : MonoBehaviour {
 				}
 			} else {
 				if(RandomMovement){
-					
 					if(_timeRandom > RandomStep){
 						
 						//destinationRandom = new Vector3(transform.position.x + Random.Range(-5.0f, 5.0f), transform.position.y + Random.Range(-5.0f, 5.0f), 0);

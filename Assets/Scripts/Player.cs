@@ -16,6 +16,7 @@ public class Player : MonoBehaviour {
 	private string _curAnim = "";
 
 	private float initScale;
+	private int currentCheckpoint = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -68,7 +69,8 @@ public class Player : MonoBehaviour {
 	}
 
 	void OnGround() {
-		if(Physics2D.OverlapArea(transform.FindChild("A").position, transform.FindChild("B").position, collisionMask)){
+		Collider2D hit = Physics2D.OverlapArea(transform.FindChild("A").position, transform.FindChild("B").position, collisionMask);
+		if(hit != null && hit.isTrigger == false){
 			onGround = true;
 		} else {
 			onGround = false;
