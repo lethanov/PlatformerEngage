@@ -8,7 +8,7 @@ public class CameraFollow : MonoBehaviour {
 
 	void Update () {
 
-		Vector3 newPosition = new Vector3(player.position.x, transform.position.y, transform.position.z);
+		Vector3 newPosition = new Vector3(player.position.x, player.position.y, transform.position.z);
 
 		transform.position = Vector3.Lerp(transform.position, newPosition, Time.deltaTime * speed);
 	}
