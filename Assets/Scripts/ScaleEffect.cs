@@ -10,7 +10,7 @@ public class ScaleEffect : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		scale = transform.localScale.x;
-		scaleFactor
+		scaleFactor = Random.Range(0, 1);
 	}
 	
 	// Update is called once per frame
