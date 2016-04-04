@@ -10,7 +10,7 @@ public class TriggerEvent : MonoBehaviour {
 	public UnityEvent OnTriggerPlayerTouch;
 
 	void Start(){
-		//Destroy(GetComponent<SpriteRenderer>());
+		Destroy(GetComponent<SpriteRenderer>());
 	}
 
 	void OnMouseDown(){
