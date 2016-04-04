@@ -28,4 +28,8 @@ public class TriggerEvent : MonoBehaviour {
 			}
 		}
 	}
+
+	public void DestroySelf(){
+		Destroy(gameObject);
+	}
 }
