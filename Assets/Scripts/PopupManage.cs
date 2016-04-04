@@ -35,9 +35,14 @@ public class PopupManage : MonoBehaviour {
 	private Vector2 _lastSafePosition;
 	private Vector2 _offset;
 	private int _indexPatrol = 0;
+	private bool _triggered = false;
+	private bool _backToHome = false;
+
+	private Vector3 _origin;
 
 	void Start(){
 		_colliderComp = GetComponent<Collider2D>();
+		_origin = transform.position;
 
 		if(IsCollidable){
 			_colliderComp.isTrigger = false;
@@ -48,7 +53,10 @@ public class PopupManage : MonoBehaviour {
 			_colliderComp.isTrigger = true;
 		}
 
-
+		if(!IsDraggable){
+			GetComponent<SpriteRenderer>().enabled = false;
+			_colliderComp.isTrigger = true;
+		}
 	}
 
 	// Update is called once per frame
@@ -56,6 +64,36 @@ public class PopupManage : MonoBehaviour {
 		if(_drag){
 			Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			transform.position = new Vector3(mouseWorldPosition.x + _offset.x, mouseWorldPosition.y + _offset.y, 0);
+		}
+		if(_triggered){
+			if(CountPatrol > 0 && _indexPatrol < CountPatrol){
+				Move();
+			}
+			if(CountPatrol == -1){
+				Move();
+			} else {
+				if(_indexPatrol >= CountPatrol){
+					Destroy(gameObject);
+				}
+			}
+		}
+	}
+
+	void Move(){
+		float step = MovementSpeed * Time.deltaTime;
+		if(!_backToHome){
+			transform.position = Vector3.MoveTowards(transform.position, DestinationTarget.position, step);
+			if(transform.position == DestinationTarget.position){
+				_backToHome = true;
+				_indexPatrol ++;
+			}
+		}
+		if(_backToHome){
+			transform.position = Vector3.MoveTowards(transform.position, _origin, step);
+			if(transform.position == _origin){
+				_backToHome = false;
+				_indexPatrol ++;
+			}
 		}
 	}
 
@@ -101,5 +139,10 @@ public class PopupManage : MonoBehaviour {
 	}
 
 	public void Trigger(){
+		_triggered = true;
+		GetComponent<SpriteRenderer>().enabled = true;
+		if(IsCollidable){
+			_colliderComp.isTrigger = false;
+		}
 	}
 }

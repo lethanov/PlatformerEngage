@@ -4,15 +4,28 @@ using System.Collections;
 
 public class TriggerEvent : MonoBehaviour {
 
-	public UnityEvent OnTrigger;
+	[Header("TRIGGER ON MOUSE CLICK")]
+	public UnityEvent OnTriggerMouseClick;
+	[Header("TRIGGER ON PLAYER TOUCHES")]
+	public UnityEvent OnTriggerPlayerTouch;
 
 	void Start(){
-		Destroy(GetComponent<SpriteRenderer>());
+		//Destroy(GetComponent<SpriteRenderer>());
 	}
 
 	void OnMouseDown(){
-		if(OnTrigger != null){
-			OnTrigger.Invoke();
+		if(OnTriggerMouseClick != null){
+			OnTriggerMouseClick.Invoke();
+			Destroy(gameObject);
+		}
+	}
+
+	void OnTriggerEnter2D(Collider2D other){
+		if(other.name == "Player"){
+			if(OnTriggerPlayerTouch != null){
+				OnTriggerPlayerTouch.Invoke();
+				Destroy(gameObject);
+			}
 		}
 	}
 }
