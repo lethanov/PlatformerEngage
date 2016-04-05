@@ -15,12 +15,15 @@ public class Player : MonoBehaviour {
 	private string _nexAnim = "Idle";
 	private string _curAnim = "";
 
-	private float initScale;
+	private float _initScale;
+	private Vector3 _startPosition;
+	private Transform _checkpoint;
 
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
-		initScale = transform.FindChild("Gfx").localScale.x;
+		_initScale = transform.FindChild("Gfx").localScale.x;
+		_startPosition = transform.position;
 	}
 
 	// Update is called once per frame
@@ -31,10 +34,10 @@ public class Player : MonoBehaviour {
 		xVel = Input.GetAxis("Horizontal") * speed;
 
 		if(xVel > 0){
-			transform.FindChild("Gfx").localScale = new Vector2(initScale, initScale);
+			transform.FindChild("Gfx").localScale = new Vector2(_initScale, _initScale);
 		} 
 		if(xVel < 0){
-			transform.FindChild("Gfx").localScale = new Vector2(-initScale, initScale);
+			transform.FindChild("Gfx").localScale = new Vector2(-_initScale, _initScale);
 		}
 
 		if(onGround){
@@ -70,9 +73,32 @@ public class Player : MonoBehaviour {
 	void OnGround() {
 		Collider2D hit = Physics2D.OverlapArea(transform.FindChild("A").position, transform.FindChild("B").position, collisionMask);
 		if(hit != null && hit.isTrigger == false){
+			try {
+				hit.gameObject.GetComponent<PopupManage>().IsDraggable = false;
+			} catch {
+				bool da = true;
+			}
 			onGround = true;
 		} else {
 			onGround = false;
+		}
+	}
+
+	public void SetNewCheckpoint(Transform _newCheckpoint){
+		_checkpoint = _newCheckpoint;
+	}
+
+	void OnTriggerEnter2D(Collider2D other){
+		if(other.gameObject.layer == 10){
+			Respawn();
+		}
+	}
+
+	void Respawn(){
+		if(_checkpoint == null){
+			transform.position = _startPosition;
+		} else {
+			transform.position = _checkpoint.position;
 		}
 	}
 }

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using System.Collections;
 
 public class InfoSensible : MonoBehaviour {
@@ -7,11 +8,7 @@ public class InfoSensible : MonoBehaviour {
 
 	private int currentCheckpoint;
 	private float timer;
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		timer += Time.deltaTime;
@@ -23,6 +20,7 @@ public class InfoSensible : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other){
 		if(other.name == "Player"){
 			if(timer > 1.0f){
+				if(currentCheckpoint < Checkpoints.Length) GameObject.Find("Player").GetComponent<Player>().SetNewCheckpoint(Checkpoints[currentCheckpoint]);
 				currentCheckpoint ++;
 			}
 		}

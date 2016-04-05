@@ -4,6 +4,9 @@ using System.Collections;
 
 public class TriggerEvent : MonoBehaviour {
 
+	[Header("False : Mouse Click, True : Player Touches")]
+	public bool Mode;
+
 	[Header("TRIGGER ON MOUSE CLICK")]
 	public UnityEvent OnTriggerMouseClick;
 	[Header("TRIGGER ON PLAYER TOUCHES")]
@@ -14,17 +17,21 @@ public class TriggerEvent : MonoBehaviour {
 	}
 
 	void OnMouseDown(){
-		if(OnTriggerMouseClick != null){
-			OnTriggerMouseClick.Invoke();
-			Destroy(gameObject);
+		if(!Mode){
+			if(OnTriggerMouseClick != null){
+				OnTriggerMouseClick.Invoke();
+				DestroySelf();
+			}
 		}
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
-		if(other.name == "Player"){
-			if(OnTriggerPlayerTouch != null){
-				OnTriggerPlayerTouch.Invoke();
-				Destroy(gameObject);
+		if(Mode){
+			if(other.name == "Player"){
+				if(OnTriggerPlayerTouch != null){
+					OnTriggerPlayerTouch.Invoke();
+					DestroySelf();
+				}
 			}
 		}
 	}
