@@ -72,7 +72,7 @@ public class Player : MonoBehaviour {
 			} else {
 				_nexAnim = "End";
 				if(_endTimer > 5.0f && _endTimer < 6.0f){
-					Instantiate(Resources.Load("GameOverComp"), new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, 0), Quaternion.identity);
+					Instantiate(Resources.Load("GameOverGroup"), new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, 0), Quaternion.identity);
 					_endTimer = 7.0f;
 				}
 			}

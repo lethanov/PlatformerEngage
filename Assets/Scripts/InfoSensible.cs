@@ -15,7 +15,7 @@ public class InfoSensible : MonoBehaviour {
 		if(currentCheckpoint < Checkpoints.Length){
 			transform.position = Vector3.Lerp(transform.position, Checkpoints[currentCheckpoint].position, Time.deltaTime * 2);
 		} else {
-			Instantiate(Resources.Load("InfoSensibleEnd"), transform.position, Quaternion.identity);
+			Instantiate(Resources.Load("InfoSensibleGroup"), transform.position, Quaternion.identity);
 			GameObject.Find("Player").GetComponent<Player>().End();
 			Destroy(gameObject);
 		}
