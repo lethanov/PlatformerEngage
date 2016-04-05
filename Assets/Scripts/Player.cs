@@ -75,9 +75,7 @@ public class Player : MonoBehaviour {
 		if(hit != null && hit.isTrigger == false){
 			try {
 				hit.gameObject.GetComponent<PopupManage>().IsDraggable = false;
-			} catch {
-				bool da = true;
-			}
+			} catch {}
 			onGround = true;
 		} else {
 			onGround = false;

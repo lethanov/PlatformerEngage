@@ -14,6 +14,9 @@ public class PopupManage : MonoBehaviour {
 	[Header("Can it be dragged by mouse ?")]
 	public bool IsDraggable;
 
+	[Header("Does it popup instant ?")]
+	public bool InstantInit;
+
 	[Header("---IF NOT DRAGGABLE---")]
 	[Header("Go back to init position When reaching his destination ?")]
 	public bool IsHoming;
@@ -42,12 +45,18 @@ public class PopupManage : MonoBehaviour {
 	private bool _backToHome = false;
 	private float _timeRandom = 0;
 	private Vector3 destinationRandom;
+	private float _normalScale;
+	private float _scale;
 
 	private Vector3 _origin;
 
 	void Start(){
 		_colliderComp = GetComponent<Collider2D>();
 		_origin = transform.position;
+
+		_scale = 1;
+		_normalScale = transform.localScale.x;
+		transform.localScale = new Vector3(_scale, _scale, _scale);
 
 		if(IsCollidable){
 			_colliderComp.isTrigger = false;
@@ -64,6 +73,11 @@ public class PopupManage : MonoBehaviour {
 		}
 
 		destinationRandom = transform.position;
+
+		if(InstantInit){
+			GetComponent<SpriteRenderer>().enabled = true;
+			_triggered = true;
+		}
 	}
 
 	// Update is called once per frame
@@ -74,6 +88,12 @@ public class PopupManage : MonoBehaviour {
 			transform.position = new Vector3(mouseWorldPosition.x + _offset.x, mouseWorldPosition.y + _offset.y, 0);
 		}
 		if(_triggered){
+			transform.localScale = new Vector3(_scale, _scale, _scale);
+			if(_scale < _normalScale){
+				_scale += 0.1f;
+			} else {
+				_scale = _normalScale;
+			}
 			if(IsHoming){
 				if(CountPatrol > 0 && _indexPatrol < CountPatrol){
 					Move();
