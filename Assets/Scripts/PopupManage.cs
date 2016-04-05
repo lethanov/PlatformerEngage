@@ -69,7 +69,6 @@ public class PopupManage : MonoBehaviour {
 
 		if(!IsDraggable){
 			GetComponent<SpriteRenderer>().enabled = false;
-			_colliderComp.isTrigger = true;
 		}
 
 		destinationRandom = transform.position;
