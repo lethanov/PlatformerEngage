@@ -9280,6 +9280,10 @@ Prefab:
       propertyPath: IsDraggable
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11407434, guid: d945ca424bf78a34aaf1f56411c5a442, type: 2}
+      propertyPath: InstantInit
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d945ca424bf78a34aaf1f56411c5a442, type: 2}
   m_IsPrefabParent: 0
@@ -15115,6 +15119,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11425450, guid: aa8be13ac6259514bbc21d41c327f21f, type: 2}
       propertyPath: IsDraggable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11425450, guid: aa8be13ac6259514bbc21d41c327f21f, type: 2}
+      propertyPath: InstantInit
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
